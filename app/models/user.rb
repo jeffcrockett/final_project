@@ -4,4 +4,7 @@ class User < ApplicationRecord
     has_many :comments
     has_many :posts
     has_many :subscriptions
+    def ordered_comments
+        self.comments.order('id')
+    end
 end
