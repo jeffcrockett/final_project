@@ -1,5 +1,5 @@
 class CommentSerializer < ActiveModel::Serializer
-  attributes :id, :content
+  attributes :id, :content, :user
   belongs_to :user
   belongs_to :post
   has_many :replies, class_name: 'Comment', foreign_key: 'parent_id'

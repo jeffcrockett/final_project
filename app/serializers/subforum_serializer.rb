@@ -1,4 +1,4 @@
 class SubforumSerializer < ActiveModel::Serializer
   attributes :id, :name, :description
-  has_many :posts, include: ['posts.comments']
+  has_many :posts
 end

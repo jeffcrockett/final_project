@@ -1,7 +1,7 @@
 class Api::V1::CommentsController < ApplicationController
-
+    skip_before_action :authorized, only: [:index]
     def index
-        render json: Comment.all, include: ['replies.replies.replies.replies']
+        render json: Comment.all, include: ['users,replies.replies.replies.replies']
     end
 
     def update 
