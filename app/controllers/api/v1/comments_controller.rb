@@ -4,19 +4,22 @@ class Api::V1::CommentsController < ApplicationController
         render json: Comment.all, include: ['users,replies.replies.replies.replies']
     end
 
+    def create
+        render json: Comment.create(comment_params)
+    end
+
     def update 
         Comment.find(params[:id]).update(comment_params)
         render json: current_user
     end
 
-    def delete
-        byebug
+    def destroy
         Comment.find(params[:id]).destroy
         render json: current_user
     end
 
     private 
     def comment_params
-        params.permit(:content)
+        params.permit(:content, :post_id, :user_id)
     end
 end
