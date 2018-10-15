@@ -1,4 +1,4 @@
 class PostSerializer < ActiveModel::Serializer
-  attributes :id, :title
+  attributes :id, :title, :user, :subforum
   has_many :comments
 end
