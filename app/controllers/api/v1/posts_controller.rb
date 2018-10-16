@@ -2,11 +2,11 @@ class Api::V1::PostsController < ApplicationController
     skip_before_action :authorized, only: [:show, :index]
 
     def index 
-        render json: Post.all
+        render json: Post.all, include: ['comments.replies']
     end
 
     def show
-        render json: Post.find(params[:id])
+        render json: Post.find(params[:id]), include: ['comments.replies']
     end
 
     def create 

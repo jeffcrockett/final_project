@@ -18,8 +18,15 @@ class Api::V1::CommentsController < ApplicationController
         render json: current_user
     end
 
+    def reply
+        comment = Comment.create(comment_params)
+        parent_comment = Comment.find(params[:parent_id])
+        parent_comment.replies << comment 
+        render json: parent_comment
+    end
+
     private 
     def comment_params
-        params.permit(:content, :post_id, :user_id)
+        params.permit(:content, :post_id, :user_id, :parent_id)
     end
 end
