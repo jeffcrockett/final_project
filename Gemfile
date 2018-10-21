@@ -7,6 +7,8 @@ gem 'active_model_serializers'
 gem 'nokogiri'
 
 gem 'jwt'
+
+gem 'faker'
 # gem 'open-uri'
 gem 'rest-client'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
