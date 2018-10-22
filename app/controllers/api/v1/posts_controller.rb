@@ -1,5 +1,5 @@
 class Api::V1::PostsController < ApplicationController
-    skip_before_action :authorized, only: [:show, :index, :frontpage]
+    skip_before_action :authorized, only: [:show, :index, :frontpage, :backpage]
 
     def index 
         render json: Post.all, include: ['comments.replies']
@@ -19,6 +19,10 @@ class Api::V1::PostsController < ApplicationController
 
     def frontpage
         render json: Post.order('upvotes - downvotes DESC').limit(25)
+    end
+
+    def backpage
+        render json: Post.order('upvotes - downvotes ASC').limit(25)
     end
 
     def destroy
