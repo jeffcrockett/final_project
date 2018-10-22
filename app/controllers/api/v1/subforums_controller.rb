@@ -13,6 +13,8 @@ class Api::V1::SubforumsController < ApplicationController
         render json: Subforum.find(params[:id])
     end
 
+    private
+
     def subforum_params
         params.permit(:name, :description)
     end

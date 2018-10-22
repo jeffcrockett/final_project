@@ -20,7 +20,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
     def show
-        render json: User.find(params[:id]), include: ['comments', 'posts']
+        render json: User.find(params[:id]), include: ['comments', 'posts', 'subscriptions','subforums.posts']
     end
 
     private
