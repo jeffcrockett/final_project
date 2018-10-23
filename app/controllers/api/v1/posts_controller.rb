@@ -2,6 +2,7 @@ class Api::V1::PostsController < ApplicationController
     skip_before_action :authorized, only: [:show, :index, :frontpage, :backpage]
 
     def index 
+        byebug
         render json: Post.all, include: ['comments.replies']
     end
 
@@ -18,7 +19,11 @@ class Api::V1::PostsController < ApplicationController
     end
 
     def frontpage
-        render json: Post.order('upvotes - downvotes DESC').limit(25)
+        if params[:range]
+            render json: Post.offset(params[:range]).order('upvotes - downvotes DESC').limit(25)
+        else
+            render json: Post.order('upvotes - downvotes DESC').limit(25)
+        end
     end
 
     def backpage
